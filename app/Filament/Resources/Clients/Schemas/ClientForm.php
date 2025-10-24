@@ -28,10 +28,18 @@ class ClientForm
                             ->label("Email"),
                         Forms\Components\TextInput::make('phone_number')
                             ->label("Phone Numebr")
+                    ]),
+
+                    Forms\Components\Repeater::make('notes')
+                        ->schema([
+                            Forms\Components\Textarea::make('content')
+                                ->label("Note: ")
+                                ->required()
+                        ])
+                        ->columnSpanFull()
+                        ->relationship()
 
 
-
-                    ])
 
             ]);
     }
