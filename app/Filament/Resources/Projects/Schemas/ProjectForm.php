@@ -25,7 +25,8 @@ class ProjectForm
                             ->label('Client')
                             ->required()
                             ->columnSpanFull()
-                            ->options(Client::pluck('name','id')),
+                            ->relationship('client', 'name'),
+
 
                         Components\DatePicker::make('deadline')
                             ->label("Deadline")
