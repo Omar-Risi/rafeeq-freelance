@@ -14,11 +14,15 @@ class Quote extends Model
     ];
 
 
+    public function total():float {
+        return 10.500;
+    }
+
     public function project():BelongsTo {
         return $this->belongsTo(Project::class);
     }
 
     public function items():HasMany {
-        $this->hasMany(QuoteItem::class);
+        return $this->hasMany(QuoteItem::class);
     }
 }
