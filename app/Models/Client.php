@@ -10,11 +10,11 @@ class Client extends Model
 
     protected $fillable = ['name', 'type','email','phone_number'];
 
-    public function Notes():HasMany {
+    public function notes():HasMany {
         return $this->hasMany(Note::class);
     }
 
-    public function Projects():HasMany {
+    public function projects():HasMany {
         return $this->hasMany(Project::class);
     }
 }
