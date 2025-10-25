@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Quotation #{{ $quote->id }}</title>
-
     <style>
         body {
             font-family: 'DejaVu Sans', sans-serif;
@@ -31,9 +31,8 @@
     </style>
 </head>
 <body>
-    <h1>Quotation for **{{ $quote->project->name }}**</h1>
+    <h1>Quotation for {{ $quote->project->name }}</h1>
     <p><strong>Quote ID:</strong> {{ $quote->id }} | <strong>Date:</strong> {{ $quote->created_at->format('Y-m-d') }}</p>
-
     <table>
         <thead>
             <tr>
@@ -46,16 +45,14 @@
         </thead>
         <tbody>
             @php $total = 0; @endphp
-
             @foreach ($quote->items as $item)
                 @php
-                    // Ensure you have 'quantity' and 'price' fields on your QuoteItem model
                     $lineTotal = ($item->quantity ?? 1) * ($item->price ?? 0);
                     $total += $lineTotal;
                 @endphp
                 <tr>
                     <td>{{ $item->name ?? 'N/A' }}</td>
-                    <td>{{ $item->description }}</td>
+                    <td>{{ $item->description ?? '' }}</td>
                     <td style="text-align: right;">{{ $item->quantity ?? 1 }}</td>
                     <td style="text-align: right;">${{ number_format($item->price ?? 0, 2) }}</td>
                     <td style="text-align: right;">${{ number_format($lineTotal, 2) }}</td>
