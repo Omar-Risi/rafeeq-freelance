@@ -14,11 +14,12 @@ class Project extends Model
         'description',
         'price',
         'agreement',
-        'signed_agreement'
+        'signed_agreement',
+        'client_id'
     ];
 
 
     public function client():BelongsTo {
-        return $this->belongsTo(Client);
+        return $this->belongsTo(Client::class);
     }
 }

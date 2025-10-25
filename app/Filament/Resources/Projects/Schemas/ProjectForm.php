@@ -22,9 +22,10 @@ class ProjectForm
                             ->columnSpanFull(),
 
                         Components\Select::make('client_id')
+                            ->label('Client')
                             ->required()
                             ->columnSpanFull()
-                            ->options(Client::pluck('name','id')->toArray()),
+                            ->options(Client::pluck('name','id')),
 
                         Components\DatePicker::make('deadline')
                             ->label("Deadline")
