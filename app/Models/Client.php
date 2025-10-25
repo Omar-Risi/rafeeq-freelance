@@ -13,4 +13,8 @@ class Client extends Model
     public function Notes():HasMany {
         return $this->hasMany(Note::class);
     }
+
+    public function Projects():HasMany {
+        return $this->hasMany(Project::class);
+    }
 }
