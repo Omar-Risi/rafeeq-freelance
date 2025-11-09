@@ -27,14 +27,13 @@ class ClientForm
                         Forms\Components\TextInput::make('email')
                             ->label("Email"),
                         Forms\Components\TextInput::make('phone_number')
-                            ->label("Phone Numebr")
+                            ->label("Phone Number")
                     ]),
 
                     Forms\Components\Repeater::make('notes')
                         ->schema([
                             Forms\Components\Textarea::make('content')
                                 ->label("Note: ")
-                                ->required()
                         ])
                         ->columnSpanFull()
                         ->relationship()
