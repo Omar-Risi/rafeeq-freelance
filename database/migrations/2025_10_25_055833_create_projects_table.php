@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price')->default(0);
             $table->string("agreement")->nullable();
             $table->string("signed_agreement")->nullable();
+            $table->string("status")->nullable();
             $table->foreignIdFor(App\Models\Client::class);
             $table->timestamps();
         });

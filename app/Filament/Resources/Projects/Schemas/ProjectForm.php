@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\Projects\Schemas;
 
 use App\Models\Client;
+use App\Models\Status;
 use Filament\Forms\Components;
+use Filament\Forms\Components\Select;
 use Filament\Schemas;
 use Filament\Schemas\Schema;
 
@@ -43,6 +45,17 @@ class ProjectForm
                             ->label("Project description")
                             ->columnSpanFull(),
                     ]),
+
+                    Schemas\Components\Fieldset::make('Project Process')
+                        ->schema([
+
+                            Components\Select::make('status')
+                                ->label("Project Status")
+                                ->options(Status::pluck('status','status'))
+
+                        ])
+                        ->columnSpanFull(),
+
                     Schemas\Components\Fieldset::make('Attachments')
                         ->columnSpanFull()
                         ->schema([
@@ -56,6 +69,7 @@ class ProjectForm
                                 ->placeholder('signed_scope_of_work.pdf')
                                 ->downloadable()
                         ])
+
             ]);
     }
 }

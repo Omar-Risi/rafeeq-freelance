@@ -15,7 +15,8 @@ class Project extends Model
         'price',
         'agreement',
         'signed_agreement',
-        'client_id'
+        'client_id',
+        'status'
     ];
 
 
