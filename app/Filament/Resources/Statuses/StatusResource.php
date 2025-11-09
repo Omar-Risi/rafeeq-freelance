@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class StatusResource extends Resource
 {
+    // TODO: Add hide from non pro users
+
     protected static ?string $model = Status::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
