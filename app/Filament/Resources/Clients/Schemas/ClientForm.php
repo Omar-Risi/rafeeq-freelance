@@ -23,7 +23,8 @@ class ClientForm
                             ->label("Type of client")
                             ->columnSpanFull()
                             ->options(["company", "individual"])
-                            ->inline(),
+                            ->inline()
+                            ->required(),
                         Forms\Components\TextInput::make('email')
                             ->label("Email"),
                         Forms\Components\TextInput::make('phone_number')
@@ -34,9 +35,11 @@ class ClientForm
                         ->schema([
                             Forms\Components\Textarea::make('content')
                                 ->label("Note: ")
+                                ->required()
                         ])
+                        ->default([])
                         ->columnSpanFull()
-                        ->relationship()
+                        ->relationship('notes')
 
 
 
