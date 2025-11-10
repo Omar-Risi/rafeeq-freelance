@@ -11,6 +11,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/register', function() {
+    return redirect()->to('/');
+})
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
