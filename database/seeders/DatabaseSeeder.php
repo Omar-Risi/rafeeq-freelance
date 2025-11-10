@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Status;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,9 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
         //TODO: Add seeder for project status
+        User::create([
+            'name' => "Admin",
+            'email' => "admin@example.com",
+            "password" => Hash::make('admin123'),
+        ]);
+
+        Status::create(['status' => 'todo']);
+        Status::create(['status' => 'doing']);
+        Status::create(['status' => 'done']);
+
 
     }
 }
