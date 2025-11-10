@@ -13,7 +13,7 @@ Route::get('/', function () {
 
 Route::get('/register', function() {
     return redirect()->to('/');
-})
+});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
