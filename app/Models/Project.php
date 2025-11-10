@@ -20,8 +20,9 @@ class Project extends Model
         'signed_agreement',
         'advance_invoice',
         'final_invoice',
+        'user_id',
         'client_id',
-        'status'
+        'status_id'
     ];
 
 
