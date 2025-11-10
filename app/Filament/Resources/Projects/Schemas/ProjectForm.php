@@ -47,26 +47,32 @@ class ProjectForm
                                 ->prefix('OMR')
                                 ->minValue(0)
                                 ->required()
+                                ->reactive()
                                 ->default(0)
+                                ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                                    $set('final_payment', ($state - $get('advance')) ?? 0);
+                                })
                                 ->columnSpanFull(),
 
                             Components\TextInput::make('advance')
                                 ->label("Advance Payment")
                                 ->numeric()
                                 ->prefix('OMR')
+                                ->reactive()
                                 ->minValue(0)
-                                ->default(0),
+                                ->default(0)
+                                ->afterStateUpdated(function ($state, callable $set, callable $get) {
+                                    $set('final_payment', ($get('price') - $state) ?? 0);
+                                }),
 
                             Components\TextInput::make('final_payment')
                                 ->label("Final Payment")
+                                ->numeric()
                                 ->prefix('OMR')
-                                ->reactive()
-                                ->afterStateUpdated(function($state, callable $set, callable $get) {
-                                    $set($get('price')- $get('advance'));
-                                })
+                                ->default(0)
                                 ->readOnly(),
-
-                        ])->columnSpanFull(),
+                        ])
+                        ->columnSpanFull(),
                     Schemas\Components\Fieldset::make('Project Process')
                         ->schema([
 
