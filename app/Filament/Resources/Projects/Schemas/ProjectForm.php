@@ -8,6 +8,7 @@ use Filament\Forms\Components;
 use Filament\Forms\Components\Select;
 use Filament\Schemas;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProjectForm
 {
@@ -29,7 +30,9 @@ class ProjectForm
                             ->label('Client')
                             ->required()
                             ->columnSpanFull()
-                            ->relationship('client', 'name'),
+                            ->relationship('client', 'name', modifyQueryUsing: fn (Builder $query) => $query->where('user_id', auth()->id()))
+                            ->searchable()
+                            ->preload(),
 
 
                         Components\DatePicker::make('deadline')
@@ -99,9 +102,8 @@ class ProjectForm
                             ->label('Status')
                             ->required()
                             ->columnSpanFull()
-                            ->relationship('status', 'status'),
-                        ])
-                        ->columnSpanFull(),
+                            ->relationship('status', 'status',modifyQueryUsing: fn (Builder $query) => $query->whereNull('user_id')->orWhere('user_id', auth()->id()))
+                        ])->columnSpanFull(),
 
                     Schemas\Components\Fieldset::make('Attachments')
                         ->columnSpanFull()
