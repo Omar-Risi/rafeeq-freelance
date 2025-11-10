@@ -16,13 +16,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        //TODO: Add seeder for project status
-        User::create([
-            'name' => "Admin",
-            'email' => "admin@example.com",
-            "password" => Hash::make('admin123'),
-        ]);
-
         Status::create(['status' => 'todo','user_id'=>null]);
         Status::create(['status' => 'doing','user_id'=>null]);
         Status::create(['status' => 'done','user_id'=>null]);
