@@ -17,8 +17,13 @@ return new class extends Migration
             $table->date('deadline')->default(now());
             $table->longText("description")->nullable();
             $table->decimal('price')->default(0);
+            $table->decimal('advance')->default(0);
+            $table->boolean('is_advance_paid')->default(false);
+            $table->boolean('is_fully_paid')->default(false);
             $table->string("agreement")->nullable();
             $table->string("signed_agreement")->nullable();
+            $table->string("advance_invoice")->nullable();
+            $table->string("final_invoice")->nullable();
             $table->string("status")->nullable();
             $table->foreignIdFor(App\Models\Client::class);
             $table->timestamps();

@@ -34,25 +34,46 @@ class ProjectForm
                             ->label("Deadline")
                             ->required(),
 
-                        Components\TextInput::make('price')
-                            ->numeric()
-                            ->prefix('OMR')
-                            ->minValue(0)
-                            ->required()
-                            ->default(0),
 
                         Components\Textarea::make('description')
                             ->label("Project description")
                             ->columnSpanFull(),
                     ]),
 
+                    Schemas\Components\Fieldset::make('Project Pricing')
+                        ->schema([
+                            Components\TextInput::make('price')
+                                ->numeric()
+                                ->prefix('OMR')
+                                ->minValue(0)
+                                ->required()
+                                ->default(0)
+                                ->columnSpanFull(),
+
+                            Components\TextInput::make('advance')
+                                ->label("Advance Payment")
+                                ->numeric()
+                                ->prefix('OMR')
+                                ->minValue(0)
+                                ->default(0),
+
+                            Components\TextInput::make('final_payment')
+                                ->label("Final Payment")
+                                ->prefix('OMR')
+                                ->reactive()
+                                ->afterStateUpdated(function($state, callable $set, callable $get) {
+                                    $set($get('price')- $get('advance'));
+                                })
+                                ->readOnly(),
+
+                        ])->columnSpanFull(),
                     Schemas\Components\Fieldset::make('Project Process')
                         ->schema([
 
                             Components\Select::make('status')
                                 ->label("Project Status")
                                 ->options(Status::pluck('status','status'))
-
+                                ->columnSpanFull(),
                         ])
                         ->columnSpanFull(),
 

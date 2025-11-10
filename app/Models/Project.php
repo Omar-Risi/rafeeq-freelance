@@ -13,8 +13,13 @@ class Project extends Model
         'deadline',
         'description',
         'price',
+        'advance',
+        'is_advance_paid',
+        'is_fully_paid',
         'agreement',
         'signed_agreement',
+        'advance_invoice',
+        'final_invoice',
         'client_id',
         'status'
     ];
