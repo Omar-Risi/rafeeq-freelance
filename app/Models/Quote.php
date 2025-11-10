@@ -10,7 +10,8 @@ class Quote extends Model
 {
 
     protected $fillable = [
-        'project_id'
+        'project_id',
+        'user_id'
     ];
 
 

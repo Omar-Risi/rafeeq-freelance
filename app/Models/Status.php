@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Status extends Model
 {
 
-    protected $fillable = ['status'];
+    protected $fillable = ['status','user_id'];
 
     public function projects():HasMany {
         return $this->hasMany(Project::class);
