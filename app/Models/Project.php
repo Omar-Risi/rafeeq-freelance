@@ -28,4 +28,8 @@ class Project extends Model
     public function client():BelongsTo {
         return $this->belongsTo(Client::class);
     }
+
+    public function status():BelongsTo {
+        return $this->belongsTo(Status::class);
+    }
 }

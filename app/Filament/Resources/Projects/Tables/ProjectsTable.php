@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Projects\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -14,18 +15,21 @@ class ProjectsTable
     {
         return $table
             ->columns([
+                TextColumn::make('client.name')
+                    ->label('Client name'),
                 TextColumn::make('name')
                     ->label('Project name'),
-                TextColumn::make('status')
+                TextColumn::make('status.status')
                     ->label('Project status')
                     ->badge(),
                 TextColumn::make('price')
                     ->prefix('OMR ')
                     ->label('Price')
                     ->badge(),
+                IconColumn::make('is_fully_paid')
+                    ->label('Payment fullfilled?')
+                    ->boolean(),
 
-                TextColumn::make('client.name')
-                    ->label('Client name'),
             ])
             ->filters([
                 //

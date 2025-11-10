@@ -69,17 +69,35 @@ class ProjectForm
                                 ->label("Final Payment")
                                 ->numeric()
                                 ->prefix('OMR')
-                                ->default(0)
+                                ->default(fn (callable $get) => $get('price') - $get('advance'))
+                                ->afterStateHydrated(fn ($set, callable $get) => $set('final_payment', ($get('price') - $get('advance')) ?? 0))
                                 ->readOnly(),
+
+
+
+                            Components\Toggle::make('is_advance_paid')
+                                ->label("Advance Paid?"),
+                            Components\Toggle::make('is_fully_paid')
+                                ->label("Advance Paid?"),
+
+                            Components\FileUpload::make('advance_invoice')
+                                ->label('Invoice of advance')
+                                ->placeholder('upload invoice')
+                                ->downloadable(),
+
+                            Components\FileUpload::make('final_invoice')
+                                ->label('Invoice of final payment')
+                                ->placeholder('upload invoice')
+                                ->downloadable(),
                         ])
                         ->columnSpanFull(),
                     Schemas\Components\Fieldset::make('Project Process')
                         ->schema([
-
-                            Components\Select::make('status')
-                                ->label("Project Status")
-                                ->options(Status::pluck('status','status'))
-                                ->columnSpanFull(),
+                        Components\Select::make('status_id')
+                            ->label('Status')
+                            ->required()
+                            ->columnSpanFull()
+                            ->relationship('status', 'status'),
                         ])
                         ->columnSpanFull(),
 

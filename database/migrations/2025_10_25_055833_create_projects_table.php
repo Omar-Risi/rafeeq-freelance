@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->string("signed_agreement")->nullable();
             $table->string("advance_invoice")->nullable();
             $table->string("final_invoice")->nullable();
-            $table->string("status")->nullable();
+            $table->foreignIdFor(Status::class)->nullable();
             $table->foreignIdFor(App\Models\Client::class);
             $table->timestamps();
         });
