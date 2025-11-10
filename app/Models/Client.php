@@ -19,7 +19,4 @@ class Client extends Model
         return $this->hasMany(Project::class);
     }
 
-    public function status():BelongsTo {
-        return $this->belongsTo(Status::class);
-    }
 }
