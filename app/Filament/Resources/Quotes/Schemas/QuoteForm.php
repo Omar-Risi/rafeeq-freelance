@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Quotes\Schemas;
 use Filament\Forms\Components;
 use Filament\Schemas\Schema;
 use Filament\Schemas;
+use Illuminate\Database\Eloquent\Builder;
 
 class QuoteForm
 {
@@ -16,7 +17,7 @@ class QuoteForm
                     ->schema([
                         Components\Select::make('project_id')
                             ->label('Project')
-                            ->relationship('project', 'name')
+                            ->relationship('project', 'name', modifyQueryUsing: fn (Builder $query) => $query->where('user_id', auth()->id()))
                             ->columnSpanFull()
                             ->required(),
                     ])->columnSpanFull(),
