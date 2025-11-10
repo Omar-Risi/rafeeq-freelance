@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
             "password" => Hash::make('admin123'),
         ]);
 
-        Status::create(['status' => 'todo']);
-        Status::create(['status' => 'doing']);
-        Status::create(['status' => 'done']);
+        Status::create(['status' => 'todo','user_id'=>null]);
+        Status::create(['status' => 'doing','user_id'=>null]);
+        Status::create(['status' => 'done','user_id'=>null]);
 
 
     }

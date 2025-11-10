@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class StatusesTable
 {
@@ -35,6 +36,6 @@ class StatusesTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->modifyQueryUsing(fn (Builder $query) => $query->whereNull('user_id')->orWhere('user_id',auth()->id()));
     }
 }
