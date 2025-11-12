@@ -21,5 +21,14 @@ class DatabaseSeeder extends Seeder
         Status::create(['status' => 'done','user_id'=>null]);
 
 
+        // testing step:
+        //
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password'=> 'admin123',
+            'is_admin' => true
+        ]);
+
     }
 }
