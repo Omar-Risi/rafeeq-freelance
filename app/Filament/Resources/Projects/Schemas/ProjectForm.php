@@ -30,9 +30,7 @@ class ProjectForm
                             ->label('Client')
                             ->required()
                             ->columnSpanFull()
-                            ->relationship('client', 'name', modifyQueryUsing: fn (Builder $query) => $query->where('user_id', auth()->id()))
-                            ->searchable()
-                            ->preload(),
+                            ->relationship('client', 'name', modifyQueryUsing: fn (Builder $query) => $query->where('user_id', auth()->id())),
 
 
                         Components\DatePicker::make('deadline')
