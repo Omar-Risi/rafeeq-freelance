@@ -36,6 +36,14 @@ class StatusesTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ])->modifyQueryUsing(fn (Builder $query) => $query->whereNull('user_id')->orWhere('user_id',auth()->id()));
+            ])->modifyQueryUsing(function (Builder $query) {
+
+                if (auth()->user()->isAdmin())
+                    return $query;
+
+                return $query
+                    ->whereNull('user_id')
+                    ->orWhere('user_id',auth() ->id());
+            });
     }
 }

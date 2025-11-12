@@ -46,6 +46,12 @@ class QuotesTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ])->modifyQueryUsing(fn (Builder $query) => $query->where('user_id',auth()->id()));
+            ])->modifyQueryUsing(function (Builder $query) {
+
+                if (auth()->user()->isAdmin())
+                    return $query;
+
+                $query->where('user_id',auth()->id());
+            });
     }
 }
