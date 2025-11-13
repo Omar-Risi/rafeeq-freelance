@@ -15,9 +15,13 @@ Route::get('/register', function() {
     return redirect()->to('/');
 });
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/dashboard', function() {
+    return redirect()->to('/admin');
+});
+
+/* Route::view('dashboard', 'dashboard') */
+/*     ->middleware(['auth', 'verified']) */
+/*     ->name('dashboard'); */
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
